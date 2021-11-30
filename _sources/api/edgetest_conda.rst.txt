@@ -1,0 +1,19 @@
+edgetest\_conda package
+=======================
+
+Submodules
+----------
+
+
+.. automodule:: edgetest_conda.plugin
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: edgetest_conda
+   :members:
+   :undoc-members:
+   :show-inheritance:
