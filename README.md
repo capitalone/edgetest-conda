@@ -11,7 +11,6 @@ Table Of Contents
 - [Install](#install)
 - [Getting Started](#getting-started)
 - [Options](#options)
-- [Examples](#examples)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -51,5 +50,19 @@ upgrade =
 
 **NOTE**: The default python version is 3.7.
 
+
 Contributing
 ------------
+
+See our [developer documentation](https://capitalone.github.io/edgetest-conda/developer.html).
+
+We welcome and appreciate your contributions! Before we can accept any contributions, we ask that you please be sure to
+sign the `[Contributor License Agreement (CLA)](https://cla-assistant.io/capitalone/edgetest-conda)
+
+This project adheres to the [Open Source Code of Conduct](https://developer.capitalone.com/resources/code-of-conduct/).
+By participating, you are expected to honor this code.
+
+License
+-------
+
+Apache-2.0
