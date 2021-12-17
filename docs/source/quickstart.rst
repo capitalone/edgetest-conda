@@ -10,6 +10,14 @@ Installation from PyPI:
 
     $ python -m pip install edgetest-conda
 
+
+Installation from conda-forge:
+
+.. code:: console
+
+    $ conda install -c conda-forge edgetest-conda
+
+
 .. important::
 
     This package uses ``conda`` to create virtual environments. This means you have to be either
