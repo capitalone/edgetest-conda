@@ -40,12 +40,11 @@ PIP_LIST_MAMBA = """
 
 TABLE_OUTPUT = """
 
-============= =============== =================== =================
- Environment   Passing tests   Upgraded packages   Package version
-------------- --------------- ------------------- -----------------
- myenv         True            myupgrade           0.2.0
-============= =============== =================== =================
-
+=============  ===============  ===================  =================
+Environment    Passing tests    Upgraded packages    Package version
+=============  ===============  ===================  =================
+myenv          True             myupgrade            0.2.0
+=============  ===============  ===================  =================
 """
 
 @pytest.mark.parametrize("config", [CFG, CFG_NOCONDA])
@@ -105,6 +104,7 @@ def test_conda_create(mock_popen, mock_cpopen):
     assert result.exit_code == 0
 
     env_loc = str(Path(loc) / ".edgetest" / "myenv")
+    py_loc = str(Path(env_loc) / "bin" / "python")
 
     assert mock_popen.call_args_list == [
         call(
@@ -123,24 +123,24 @@ def test_conda_create(mock_popen, mock_cpopen):
             universal_newlines=True
         ),
         call(
-            (f"{env_loc}/bin/python", "-m", "pip", "install", "."),
+            (f"{py_loc}", "-m", "pip", "install", "."),
             stdout=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{env_loc}/bin/python", "-m", "pip", "install", "myupgrade", "--upgrade"),
+            (f"{py_loc}", "-m", "pip", "install", "myupgrade", "--upgrade"),
             stdout=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{env_loc}/bin/python", "-m", "pip", "list", "--format", "json"),
+            (f"{py_loc}", "-m", "pip", "list", "--format", "json"),
             stdout=-1,
             universal_newlines=True,
         ),
     ]
     assert mock_cpopen.call_args_list == [
         call(
-            (f"{env_loc}/bin/python", "-m", "pytest", "tests", "-m", "not integration"),
+            (f"{py_loc}", "-m", "pytest", "tests", "-m", "not integration"),
             universal_newlines=True,
         )
     ]
@@ -167,6 +167,7 @@ def test_mamba_create(mock_popen, mock_cpopen):
     assert result.exit_code == 0
 
     env_loc = str(Path(loc) / ".edgetest" / "myenv")
+    py_loc = str(Path(env_loc) / "bin" / "python")
 
     assert mock_popen.call_args_list == [
         call(
@@ -185,24 +186,24 @@ def test_mamba_create(mock_popen, mock_cpopen):
             universal_newlines=True
         ),
         call(
-            (f"{env_loc}/bin/python", "-m", "pip", "install", "."),
+            (f"{py_loc}", "-m", "pip", "install", "."),
             stdout=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{env_loc}/bin/python", "-m", "pip", "install", "myupgrade", "--upgrade"),
+            (f"{py_loc}", "-m", "pip", "install", "myupgrade", "--upgrade"),
             stdout=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{env_loc}/bin/python", "-m", "pip", "list", "--format", "json"),
+            (f"{py_loc}", "-m", "pip", "list", "--format", "json"),
             stdout=-1,
             universal_newlines=True,
         ),
     ]
     assert mock_cpopen.call_args_list == [
         call(
-            (f"{env_loc}/bin/python", "-m", "pytest", "tests", "-m", "not integration"),
+            (f"{py_loc}", "-m", "pytest", "tests", "-m", "not integration"),
             universal_newlines=True,
         )
     ]
