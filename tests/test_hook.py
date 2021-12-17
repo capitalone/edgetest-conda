@@ -1,5 +1,6 @@
 """Test the conda hook."""
 
+import platform
 from pathlib import Path
 from unittest.mock import call, patch, PropertyMock
 
@@ -104,7 +105,11 @@ def test_conda_create(mock_popen, mock_cpopen):
     assert result.exit_code == 0
 
     env_loc = str(Path(loc) / ".edgetest" / "myenv")
-    py_loc = str(Path(env_loc) / "bin" / "python")
+    if platform.system() == "Windows":
+        py_loc = str(Path(env_loc)  / "Scripts" / "python")
+    else:
+        py_loc = str(Path(env_loc)  / "bin" / "python")
+
 
     assert mock_popen.call_args_list == [
         call(
@@ -167,7 +172,10 @@ def test_mamba_create(mock_popen, mock_cpopen):
     assert result.exit_code == 0
 
     env_loc = str(Path(loc) / ".edgetest" / "myenv")
-    py_loc = str(Path(env_loc) / "bin" / "python")
+    if platform.system() == "Windows":
+        py_loc = str(Path(env_loc)  / "Scripts" / "python")
+    else:
+        py_loc = str(Path(env_loc)  / "bin" / "python")
 
     assert mock_popen.call_args_list == [
         call(
