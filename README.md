@@ -22,6 +22,14 @@ Installation from PyPI:
 $ python -m pip install edgetest-conda
 ```
 
+Installation from conda-forge:
+
+```console
+$ conda install -c conda-forge edgetest-conda
+```
+
+
+
 **NOTE**: This plugin uses ``conda create ...``, so you need to be in a ``conda`` base environment
 or you must run
 
