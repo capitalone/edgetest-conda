@@ -23,6 +23,10 @@ def addoption(schema: Schema):
     schema : Schema
         The schema class.
     """
+
+    def to_bool(x):
+        return x.lower() in ["true", "1"]
+
     schema.add_envoption(
         "conda_install",
         {
@@ -35,6 +39,14 @@ def addoption(schema: Schema):
     )
     schema.add_envoption(
         "python_version", {"type": "string", "default": "3.7", "coerce": str}
+    )
+    schema.add_envoption(
+        "update_with_conda",
+        {
+            "type": "boolean",
+            "coerce": to_bool,
+            "required": False,
+        },
     )
 
 
@@ -124,7 +136,7 @@ def create_environment(basedir: Path, envname: str, conf: Dict):
 
 
 @hookimpl
-def run_update(basedir: str, envname: str, upgrade: List):
+def run_update(basedir: str, envname: str, upgrade: List, conf: Dict):
     """Update packages from upgrade list.
 
     Parameters
@@ -135,6 +147,8 @@ def run_update(basedir: str, envname: str, upgrade: List):
         The name of the virtual environment.
     upgrade : list
         The list of packages to upgrade
+    conf : dict
+        The configuration dictionary for the environment. We will look for ``update_with_conda``.
 
     Returns
     -------
@@ -147,6 +161,9 @@ def run_update(basedir: str, envname: str, upgrade: List):
     RuntimeError
         Error raised if the packages cannot be updated.
     """
+    if conf["update_with_conda"] is False:
+        return None
+
     env_manager = "mamba" if _check_mamba() else "conda"
     try:
         _run_command(
