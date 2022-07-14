@@ -52,5 +52,5 @@ you will need to modify the configuration file:
     environments.
 
 ``update_with_conda`` is optional. The default behaviour is ``False``. Accepted values are ``True`` or ``False`` if
-provided. If ``True`` the update command will be excuted using ``conda``. If ``False`` the update command will be
-excuted using the default beahviour using ``pip``.
+provided. If ``True`` the update command will be executed using ``conda`` or ``mamba``. If ``False`` the update command
+will be executed using the default behaviour using ``pip``.
