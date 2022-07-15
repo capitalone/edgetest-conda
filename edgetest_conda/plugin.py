@@ -136,12 +136,12 @@ def create_environment(basedir: Path, envname: str, conf: Dict):
 
 
 @hookimpl
-def run_update(basedir: str, envname: str, upgrade: List, conf: Dict):
+def run_update(basedir: Path, envname: str, upgrade: List, conf: Dict):
     """Update packages from upgrade list.
 
     Parameters
     ----------
-    basedir : str
+    basedir : Path
         The base directory location for the environment.
     envname : str
         The name of the virtual environment.
