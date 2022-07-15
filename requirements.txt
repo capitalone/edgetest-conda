@@ -16,7 +16,7 @@ pluggy==1.0.0
     # via edgetest
 pyparsing==3.0.9
     # via packaging
-tabulate==0.8.9
+tabulate==0.8.10
     # via edgetest
 
 # The following packages are considered to be unsafe in a requirements file:
