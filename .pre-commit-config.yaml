@@ -18,7 +18,7 @@ repos:
         files: ^edgetest_conda/
         language_version: python3.9
   - repo: https://github.com/jazzband/pip-tools
-    rev: 5.5.0
+    rev: 6.8.0
     hooks:
       - id: pip-compile
   - repo: https://github.com/pre-commit/pre-commit-hooks
