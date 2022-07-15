@@ -161,7 +161,7 @@ def run_update(basedir: Path, envname: str, upgrade: List, conf: Dict):
     RuntimeError
         Error raised if the packages cannot be updated.
     """
-    if conf["update_with_conda"] is False:
+    if conf.get("update_with_conda", False) is False:
         return None
 
     env_manager = "mamba" if _check_mamba() else "conda"
