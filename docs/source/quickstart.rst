@@ -43,9 +43,14 @@ you will need to modify the configuration file:
     python_version = 3.8
     upgrade =
         myupgrade
+    update_with_conda = True
 
 .. important::
 
     If you have `mamba <https://github.com/mamba-org/mamba>`_ installed (via ``conda``) in your
     execution environment, this plugin will use ``mamba`` to create your individual testing
     environments.
+
+``update_with_conda`` is optional. The default behaviour is ``False``. Accepted values are ``True`` or ``False`` if
+provided. If ``True`` the update command will be executed using ``conda`` or ``mamba``. If ``False`` the update command
+will be executed using the default behaviour using ``pip``.
