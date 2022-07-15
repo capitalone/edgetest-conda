@@ -221,11 +221,6 @@ def test_conda_create_update_pip(mock_popen, mock_cpopen):
             universal_newlines=True,
         ),
         call(
-            ("conda", "list", "--json"),
-            stdout=-1,
-            universal_newlines=True,
-        ),
-        call(
             (f"{py_loc}", "-m", "pip", "install", "myupgrade", "--upgrade"),
             stdout=-1,
             universal_newlines=True,
@@ -361,11 +356,6 @@ def test_mamba_create_update_pip(mock_popen, mock_cpopen):
         ),
         call(
             (f"{py_loc}", "-m", "pip", "install", "."),
-            stdout=-1,
-            universal_newlines=True,
-        ),
-        call(
-            ("conda", "list", "--json"),
             stdout=-1,
             universal_newlines=True,
         ),
