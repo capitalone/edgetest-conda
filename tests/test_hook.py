@@ -36,6 +36,17 @@ command =
     pytest tests -m 'not integration'
 """
 
+CFG_UPDATE_PIP_DEFAULT = """
+[edgetest.envs.myenv]
+conda_install =
+    graphviz
+python_version = 3.8
+upgrade =
+    myupgrade
+command =
+    pytest tests -m 'not integration'
+"""
+
 
 CFG_NOCONDA = """
 [edgetest.envs.myenv]
@@ -174,9 +185,10 @@ def test_conda_create(mock_popen, mock_cpopen):
     assert result.output == TABLE_OUTPUT
 
 
+@pytest.mark.parametrize("CFG", [CFG_UPDATE_PIP, CFG_UPDATE_PIP_DEFAULT])
 @patch("edgetest.core.Popen", autospec=True)
 @patch("edgetest.utils.Popen", autospec=True)
-def test_conda_create_update_pip(mock_popen, mock_cpopen):
+def test_conda_create_update_pip(mock_popen, mock_cpopen, CFG):
     """Test creating a basic conda environment."""
     mock_popen.return_value.communicate.return_value = (PIP_LIST, "error")
     type(mock_popen.return_value).returncode = PropertyMock(return_value=0)
@@ -187,7 +199,7 @@ def test_conda_create_update_pip(mock_popen, mock_cpopen):
 
     with runner.isolated_filesystem() as loc:
         with open("config.ini", "w") as outfile:
-            outfile.write(CFG_UPDATE_PIP)
+            outfile.write(CFG)
 
         result = runner.invoke(cli, ["--config=config.ini"])
 
@@ -313,9 +325,10 @@ def test_mamba_create(mock_popen, mock_cpopen):
     assert result.output == TABLE_OUTPUT
 
 
+@pytest.mark.parametrize("CFG", [CFG_UPDATE_PIP, CFG_UPDATE_PIP_DEFAULT])
 @patch("edgetest.core.Popen", autospec=True)
 @patch("edgetest.utils.Popen", autospec=True)
-def test_mamba_create_update_pip(mock_popen, mock_cpopen):
+def test_mamba_create_update_pip(mock_popen, mock_cpopen, CFG):
     """Test running ``edgetest`` with ``mamba``."""
     mock_popen.return_value.communicate.return_value = (PIP_LIST_MAMBA, "error")
     type(mock_popen.return_value).returncode = PropertyMock(return_value=0)
@@ -326,7 +339,7 @@ def test_mamba_create_update_pip(mock_popen, mock_cpopen):
 
     with runner.isolated_filesystem() as loc:
         with open("config.ini", "w") as outfile:
-            outfile.write(CFG_UPDATE_PIP)
+            outfile.write(CFG)
 
         result = runner.invoke(cli, ["--config=config.ini"])
 
