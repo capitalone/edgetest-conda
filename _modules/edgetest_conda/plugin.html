@@ -365,7 +365,7 @@
 <span class="sd">    RuntimeError</span>
 <span class="sd">        Error raised if the packages cannot be updated.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">conf</span><span class="p">[</span><span class="s2">&quot;update_with_conda&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">conf</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;update_with_conda&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
 
     <span class="n">env_manager</span> <span class="o">=</span> <span class="s2">&quot;mamba&quot;</span> <span class="k">if</span> <span class="n">_check_mamba</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;conda&quot;</span>
