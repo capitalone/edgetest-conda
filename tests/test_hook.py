@@ -78,7 +78,7 @@ myenv          True             myupgrade            0.2.0
 def test_addoption(config, tmpdir):
     """Test the addoption hook."""
     location = tmpdir.mkdir("mylocation")
-    conf_loc = Path(str(location), "myconfig.ini")
+    conf_loc = Path(str(location), "myconfig.cfg")
     with open(conf_loc, "w") as outfile:
         outfile.write(config)
 
@@ -125,10 +125,10 @@ def test_conda_create(mock_popen, mock_cpopen):
     runner = CliRunner()
 
     with runner.isolated_filesystem() as loc:
-        with open("config.ini", "w") as outfile:
+        with open("config.cfg", "w") as outfile:
             outfile.write(CFG)
 
-        result = runner.invoke(cli, ["--config=config.ini"])
+        result = runner.invoke(cli, ["--config=config.cfg"])
 
     assert result.exit_code == 0
 
@@ -198,10 +198,10 @@ def test_conda_create_update_pip(mock_popen, mock_cpopen, CFG):
     runner = CliRunner()
 
     with runner.isolated_filesystem() as loc:
-        with open("config.ini", "w") as outfile:
+        with open("config.cfg", "w") as outfile:
             outfile.write(CFG)
 
-        result = runner.invoke(cli, ["--config=config.ini"])
+        result = runner.invoke(cli, ["--config=config.cfg"])
 
     assert result.exit_code == 0
 
@@ -265,10 +265,10 @@ def test_mamba_create(mock_popen, mock_cpopen):
     runner = CliRunner()
 
     with runner.isolated_filesystem() as loc:
-        with open("config.ini", "w") as outfile:
+        with open("config.cfg", "w") as outfile:
             outfile.write(CFG)
 
-        result = runner.invoke(cli, ["--config=config.ini"])
+        result = runner.invoke(cli, ["--config=config.cfg"])
 
     assert result.exit_code == 0
 
@@ -338,10 +338,10 @@ def test_mamba_create_update_pip(mock_popen, mock_cpopen, CFG):
     runner = CliRunner()
 
     with runner.isolated_filesystem() as loc:
-        with open("config.ini", "w") as outfile:
+        with open("config.cfg", "w") as outfile:
             outfile.write(CFG)
 
-        result = runner.invoke(cli, ["--config=config.ini"])
+        result = runner.invoke(cli, ["--config=config.cfg"])
 
     assert result.exit_code == 0
 
