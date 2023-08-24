@@ -1,8 +1,9 @@
 # Conda edgetest plugin
 
-![python-3.7](https://img.shields.io/badge/python-3.7-green.svg)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/edgetest-conda)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
-
+[![PyPI version](https://badge.fury.io/py/edgetest-conda.svg)](https://badge.fury.io/py/edgetest-conda)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/edgetest-conda/badges/version.svg)](https://anaconda.org/conda-forge/edgetest-conda)
 [Full Documentation](https://capitalone.github.io/edgetest-conda/)
 
 Table Of Contents
@@ -50,12 +51,12 @@ as well as the python version for your environment(s):
 [edgetest.envs.myenv]
 conda_install =
     graphviz
-python_version = 3.8
+python_version = 3.10
 upgrade =
     myupgrade
 ```
 
-**NOTE**: The default python version is 3.7.
+**NOTE**: The default python version is 3.10.
 
 
 Contributing
