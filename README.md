@@ -4,6 +4,7 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 [![PyPI version](https://badge.fury.io/py/edgetest-conda.svg)](https://badge.fury.io/py/edgetest-conda)
 [![Anaconda-Server Badge](https://anaconda.org/conda-forge/edgetest-conda/badges/version.svg)](https://anaconda.org/conda-forge/edgetest-conda)
+
 [Full Documentation](https://capitalone.github.io/edgetest-conda/)
 
 Table Of Contents
