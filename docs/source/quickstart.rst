@@ -40,7 +40,7 @@ you will need to modify the configuration file:
     [edgetest.envs.myenv]
     conda_install =
         graphviz
-    python_version = 3.8
+    python_version = 3.10
     upgrade =
         myupgrade
     update_with_conda = True
