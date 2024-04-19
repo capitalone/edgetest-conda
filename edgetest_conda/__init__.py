@@ -1,6 +1,6 @@
 """Package initialization."""
 
-__version__ = "2023.8.0"
+__version__ = "2024.4.0"
 
 __title__ = "edgetest-conda"
 __description__ = "Conda edgetest plugin"
