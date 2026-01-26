@@ -135,7 +135,7 @@ def test_conda_create(mock_popen, mock_cpopen):
 
     env_loc = str(Path(loc) / ".edgetest" / "myenv")
     if platform.system() == "Windows":
-        py_loc = str(Path(env_loc) / "Scripts" / "python")
+        py_loc = str(Path(env_loc) / "Scripts" / "python.exe")
     else:
         py_loc = str(Path(env_loc) / "bin" / "python")
 
@@ -215,7 +215,7 @@ def test_conda_create_update_pip(mock_popen, mock_cpopen, CFG):
 
     env_loc = str(Path(loc) / ".edgetest" / "myenv")
     if platform.system() == "Windows":
-        py_loc = str(Path(env_loc) / "Scripts" / "python")
+        py_loc = str(Path(env_loc) / "Scripts" / "python.exe")
     else:
         py_loc = str(Path(env_loc) / "bin" / "python")
 
@@ -288,7 +288,7 @@ def test_mamba_create(mock_popen, mock_cpopen):
 
     env_loc = str(Path(loc) / ".edgetest" / "myenv")
     if platform.system() == "Windows":
-        py_loc = str(Path(env_loc) / "Scripts" / "python")
+        py_loc = str(Path(env_loc) / "Scripts" / "python.exe")
     else:
         py_loc = str(Path(env_loc) / "bin" / "python")
 
@@ -368,7 +368,7 @@ def test_mamba_create_update_pip(mock_popen, mock_cpopen, CFG):
 
     env_loc = str(Path(loc) / ".edgetest" / "myenv")
     if platform.system() == "Windows":
-        py_loc = str(Path(env_loc) / "Scripts" / "python")
+        py_loc = str(Path(env_loc) / "Scripts" / "python.exe")
     else:
         py_loc = str(Path(env_loc) / "bin" / "python")
 
