@@ -1,0 +1,2 @@
+[edgetest]
+conda = edgetest_conda.plugin

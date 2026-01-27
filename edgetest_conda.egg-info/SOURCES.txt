@@ -1,0 +1,17 @@
+AUTHORS.md
+LICENSE
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+edgetest_conda/__init__.py
+edgetest_conda/plugin.py
+edgetest_conda.egg-info/PKG-INFO
+edgetest_conda.egg-info/SOURCES.txt
+edgetest_conda.egg-info/dependency_links.txt
+edgetest_conda.egg-info/entry_points.txt
+edgetest_conda.egg-info/not-zip-safe
+edgetest_conda.egg-info/requires.txt
+edgetest_conda.egg-info/top_level.txt
+tests/test_hook.py

@@ -1,0 +1,149 @@
+Metadata-Version: 2.4
+Name: edgetest-conda
+Version: 2026.1.0
+Summary: Conda edgetest plugin
+Home-page: https://github.com/capitalone/edgetest-conda
+Author: Akshay Gupta
+Author-email: akshay.gupta2@capitalone.com
+Maintainer: Akshay Gupta
+Maintainer-email: akshay.gupta2@capitalone.com
+Project-URL: Documentation, https://capitalone.github.io/edgetest-conda
+Project-URL: Bug Tracker, https://github.com/capitalone/edgetest-conda/issues
+Project-URL: Source Code, https://github.com/capitalone/edgetest-conda
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Description-Content-Type: text/markdown
+License-File: LICENSE
+License-File: AUTHORS.md
+Requires-Dist: edgetest>=2022.3.0
+Provides-Extra: docs
+Requires-Dist: furo; extra == "docs"
+Requires-Dist: sphinx; extra == "docs"
+Requires-Dist: sphinx-copybutton; extra == "docs"
+Requires-Dist: sphinx-tabs; extra == "docs"
+Provides-Extra: tests
+Requires-Dist: coverage; extra == "tests"
+Requires-Dist: flake8; extra == "tests"
+Requires-Dist: mypy; extra == "tests"
+Requires-Dist: pydocstyle; extra == "tests"
+Requires-Dist: pytest; extra == "tests"
+Requires-Dist: pytest-cov; extra == "tests"
+Provides-Extra: qa
+Requires-Dist: black; extra == "qa"
+Requires-Dist: isort; extra == "qa"
+Requires-Dist: pip-tools; extra == "qa"
+Requires-Dist: pre-commit; extra == "qa"
+Requires-Dist: pylint; extra == "qa"
+Provides-Extra: build
+Requires-Dist: build; extra == "build"
+Requires-Dist: twine; extra == "build"
+Requires-Dist: wheel; extra == "build"
+Requires-Dist: bumpver; extra == "build"
+Provides-Extra: dev
+Requires-Dist: coverage; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: pydocstyle; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Requires-Dist: furo; extra == "dev"
+Requires-Dist: sphinx; extra == "dev"
+Requires-Dist: sphinx-copybutton; extra == "dev"
+Requires-Dist: sphinx-tabs; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: isort; extra == "dev"
+Requires-Dist: pip-tools; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
+Requires-Dist: pylint; extra == "dev"
+Requires-Dist: build; extra == "dev"
+Requires-Dist: twine; extra == "dev"
+Requires-Dist: wheel; extra == "dev"
+Requires-Dist: bumpver; extra == "dev"
+Dynamic: license-file
+
+# Conda edgetest plugin
+
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/edgetest-conda)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
+[![PyPI version](https://badge.fury.io/py/edgetest-conda.svg)](https://badge.fury.io/py/edgetest-conda)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/edgetest-conda/badges/version.svg)](https://anaconda.org/conda-forge/edgetest-conda)
+
+[Full Documentation](https://capitalone.github.io/edgetest-conda/)
+
+Table Of Contents
+-----------------
+
+- [Install](#install)
+- [Getting Started](#getting-started)
+- [Contributing](#contributing)
+- [License](#license)
+
+Install
+-------
+
+Installation from PyPI:
+
+```console
+$ python -m pip install edgetest-conda
+```
+
+Installation from conda-forge:
+
+```console
+$ conda install -c conda-forge edgetest-conda
+```
+
+
+
+**NOTE**: This plugin uses ``conda create ...``, so you need to be in a ``conda`` base environment
+or you must run
+
+```console
+$ conda install conda
+```
+
+in your current environment.
+
+Getting Started
+---------------
+
+This plugin allows users to create virtual environments using ``conda`` instead of ``venv``.
+With this plugin installed, you can also specify packages that you want to install via ``conda``
+as well as the python version for your environment(s):
+
+```ini
+[edgetest.envs.myenv]
+conda_install =
+    graphviz
+python_version = 3.10
+upgrade =
+    myupgrade
+```
+
+**NOTE**: The default python version is 3.10.
+
+
+Contributing
+------------
+
+See our [developer documentation](https://capitalone.github.io/edgetest-conda/developer.html).
+
+We welcome and appreciate your contributions! Before we can accept any contributions, we ask that you please be sure to
+sign the [Contributor License Agreement (CLA)](https://cla-assistant.io/capitalone/edgetest-conda)
+
+This project adheres to the [Open Source Code of Conduct](https://developer.capitalone.com/resources/code-of-conduct/).
+By participating, you are expected to honor this code.
+
+License
+-------
+
+Apache-2.0
