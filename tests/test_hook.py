@@ -17,7 +17,7 @@ CFG = """
 update_with_conda = True
 conda_install =
     graphviz
-python_version = 3.8
+python_version = 3.12
 upgrade =
     myupgrade
 command =
@@ -29,7 +29,7 @@ CFG_UPDATE_PIP = """
 update_with_conda = False
 conda_install =
     graphviz
-python_version = 3.8
+python_version = 3.12
 upgrade =
     myupgrade
 command =
@@ -40,7 +40,7 @@ CFG_UPDATE_PIP_DEFAULT = """
 [edgetest.envs.myenv]
 conda_install =
     graphviz
-python_version = 3.8
+python_version = 3.12
 upgrade =
     myupgrade
 command =
@@ -106,6 +106,7 @@ def test_mamba_check(mock_popen):
         call(
             ("conda", "list", "--json"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         )
     ]
@@ -134,7 +135,7 @@ def test_conda_create(mock_popen, mock_cpopen):
 
     env_loc = str(Path(loc) / ".edgetest" / "myenv")
     if platform.system() == "Windows":
-        py_loc = str(Path(env_loc) / "Scripts" / "python")
+        py_loc = str(Path(env_loc) / "Scripts" / "python.exe")
     else:
         py_loc = str(Path(env_loc) / "bin" / "python")
 
@@ -142,36 +143,43 @@ def test_conda_create(mock_popen, mock_cpopen):
         call(
             ("conda", "list", "--json"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            ("conda", "create", "-p", env_loc, "python=3.8", "--yes"),
+            ("conda", "create", "-p", env_loc, "python=3.12", "--yes"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
             ("conda", "install", "-p", env_loc, "graphviz", "--yes"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{py_loc}", "-m", "pip", "install", "."),
+            ("uv", "pip", "install", f"--python={py_loc}", "."),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
             ("conda", "list", "--json"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
             ("conda", "update", "-p", env_loc, "myupgrade", "--yes"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{py_loc}", "-m", "pip", "list", "--format", "json"),
+            ("uv", "pip", "list", f"--python={py_loc}", "--format", "json"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
     ]
@@ -207,7 +215,7 @@ def test_conda_create_update_pip(mock_popen, mock_cpopen, CFG):
 
     env_loc = str(Path(loc) / ".edgetest" / "myenv")
     if platform.system() == "Windows":
-        py_loc = str(Path(env_loc) / "Scripts" / "python")
+        py_loc = str(Path(env_loc) / "Scripts" / "python.exe")
     else:
         py_loc = str(Path(env_loc) / "bin" / "python")
 
@@ -215,31 +223,37 @@ def test_conda_create_update_pip(mock_popen, mock_cpopen, CFG):
         call(
             ("conda", "list", "--json"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            ("conda", "create", "-p", env_loc, "python=3.8", "--yes"),
+            ("conda", "create", "-p", env_loc, "python=3.12", "--yes"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
             ("conda", "install", "-p", env_loc, "graphviz", "--yes"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{py_loc}", "-m", "pip", "install", "."),
+            ("uv", "pip", "install", f"--python={py_loc}", "."),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{py_loc}", "-m", "pip", "install", "myupgrade", "--upgrade"),
+            ("uv", "pip", "install", f"--python={py_loc}", "myupgrade", "--upgrade"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{py_loc}", "-m", "pip", "list", "--format", "json"),
+            ("uv", "pip", "list", f"--python={py_loc}", "--format", "json"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
     ]
@@ -274,7 +288,7 @@ def test_mamba_create(mock_popen, mock_cpopen):
 
     env_loc = str(Path(loc) / ".edgetest" / "myenv")
     if platform.system() == "Windows":
-        py_loc = str(Path(env_loc) / "Scripts" / "python")
+        py_loc = str(Path(env_loc) / "Scripts" / "python.exe")
     else:
         py_loc = str(Path(env_loc) / "bin" / "python")
 
@@ -282,36 +296,43 @@ def test_mamba_create(mock_popen, mock_cpopen):
         call(
             ("conda", "list", "--json"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            ("mamba", "create", "-p", env_loc, "python=3.8", "--yes"),
+            ("mamba", "create", "-p", env_loc, "python=3.12", "--yes"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
             ("mamba", "install", "-p", env_loc, "graphviz", "--yes"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{py_loc}", "-m", "pip", "install", "."),
+            ("uv", "pip", "install", f"--python={py_loc}", "."),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
             ("conda", "list", "--json"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
             ("mamba", "update", "-p", env_loc, "myupgrade", "--yes"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{py_loc}", "-m", "pip", "list", "--format", "json"),
+            ("uv", "pip", "list", f"--python={py_loc}", "--format", "json"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
     ]
@@ -347,7 +368,7 @@ def test_mamba_create_update_pip(mock_popen, mock_cpopen, CFG):
 
     env_loc = str(Path(loc) / ".edgetest" / "myenv")
     if platform.system() == "Windows":
-        py_loc = str(Path(env_loc) / "Scripts" / "python")
+        py_loc = str(Path(env_loc) / "Scripts" / "python.exe")
     else:
         py_loc = str(Path(env_loc) / "bin" / "python")
 
@@ -355,31 +376,37 @@ def test_mamba_create_update_pip(mock_popen, mock_cpopen, CFG):
         call(
             ("conda", "list", "--json"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            ("mamba", "create", "-p", env_loc, "python=3.8", "--yes"),
+            ("mamba", "create", "-p", env_loc, "python=3.12", "--yes"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
             ("mamba", "install", "-p", env_loc, "graphviz", "--yes"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{py_loc}", "-m", "pip", "install", "."),
+            ("uv", "pip", "install", f"--python={py_loc}", "."),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{py_loc}", "-m", "pip", "install", "myupgrade", "--upgrade"),
+            ("uv", "pip", "install", f"--python={py_loc}", "myupgrade", "--upgrade"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
         call(
-            (f"{py_loc}", "-m", "pip", "list", "--format", "json"),
+            ("uv", "pip", "list", f"--python={py_loc}", "--format", "json"),
             stdout=-1,
+            stderr=-1,
             universal_newlines=True,
         ),
     ]
