@@ -1,16 +1,16 @@
 <!doctype html>
-<html class="no-js" lang="en" data-content_root="./">
+<html class="no-js" lang="en" data-content_root="../">
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="edgetest_conda" href="api/modules.html"><link rel="prev" title="Developer instructions" href="developer.html">
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="prev" title="edgetest_conda" href="modules.html">
 
     <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
-        <title>Release Guide - Conda edgetest plugin documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+        <title>edgetest_conda package - Conda edgetest plugin documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
     
     
 
@@ -162,7 +162,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">Conda edgetest plugin  documentation</div></a>
+      <a href="../index.html"><div class="brand">Conda edgetest plugin  documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -181,26 +181,26 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   <span class="sidebar-brand-text">Conda edgetest plugin  documentation</span>
   
-</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer instructions</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Release Guide</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developer.html">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_guide.html">Release Guide</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
-<ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="api/modules.html">edgetest_conda</a><input aria-label="Toggle navigation of edgetest_conda" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="api/edgetest_conda.html">edgetest_conda package</a></li>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">edgetest_conda</a><input aria-label="Toggle navigation of edgetest_conda" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">edgetest_conda package</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/capitalone/edgetest-conda">Github Repo</a></li>
@@ -224,7 +224,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="_sources/release_guide.rst.txt" title="View this page">
+  <a class="muted-link" href="../_sources/api/edgetest_conda.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -242,40 +242,77 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="release-guide">
-<h1>Release Guide<a class="headerlink" href="#release-guide" title="Link to this heading">¶</a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
-<p>Starting in 2026 we’ve modified our git workflow.</p>
-<p><code class="docutils literal notranslate"><span class="pre">main</span></code> will be the core branch where all features will get merged into and
-production ready code will also exist. When a release is ready to be made releases/tags will be use
-to point to the commit where the release should be made from.</p>
-<p>In the past we had used <code class="docutils literal notranslate"><span class="pre">dev</span></code>, in conjunction with <code class="docutils literal notranslate"><span class="pre">main</span></code>, but there were some issues
-with diverging branches and new rulesets which make the <code class="docutils literal notranslate"><span class="pre">main</span></code> only branching strategy
-easier to manage.</p>
-<p>Each release on <code class="docutils literal notranslate"><span class="pre">main</span></code> should be tagged properly to denote a “version” that will have the
-corresponding artifact on PyPI for users to <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> is where official documentation will go. After each release you should
-build the docs and push the HTML to the pages branch. When first setting up the
-repo you want to make sure your gh-pages is a orphaned branch since it is
-disconnected and independent from the code: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">--orphan</span> <span class="pre">gh-pages</span></code>.</p>
-<p>To build the documentation, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">sphinx</span></code>. To push, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">ghpages</span></code>.</p>
-</section>
-<section id="tldr">
-<h2>TLDR;<a class="headerlink" href="#tldr" title="Link to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>Each feature should have its own branch.</p></li>
-<li><p>Each feature branch should be squash merged into <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
-<li><p>Before a release, bump the version using <code class="docutils literal notranslate"><span class="pre">bumpver</span></code>.</p></li>
-<li><p>Create a release from <code class="docutils literal notranslate"><span class="pre">main</span></code> via Releases and Tags</p></li>
-<li><p>Build and push docs <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code>. (automated via actions)</p></li>
-<li><p>Build and push version to PyPI. (automated via actions)</p></li>
+          <section id="edgetest-conda-package">
+<h1>edgetest_conda package<a class="headerlink" href="#edgetest-conda-package" title="Link to this heading">¶</a></h1>
+<section id="module-edgetest_conda.plugin">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-edgetest_conda.plugin" title="Link to this heading">¶</a></h2>
+<p>Plugin for environment creation through conda.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="edgetest_conda.plugin.addoption">
+<span class="sig-prename descclassname"><span class="pre">edgetest_conda.plugin.</span></span><span class="sig-name descname"><span class="pre">addoption</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schema</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Schema</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edgetest_conda/plugin.html#addoption"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edgetest_conda.plugin.addoption" title="Link to this definition">¶</a></dt>
+<dd><p>Add an environment-level variable for conda installation options.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>schema</strong> (<em>Schema</em>) – The schema class.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="edgetest_conda.plugin.create_environment">
+<span class="sig-prename descclassname"><span class="pre">edgetest_conda.plugin.</span></span><span class="sig-name descname"><span class="pre">create_environment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basedir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">envname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edgetest_conda/plugin.html#create_environment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edgetest_conda.plugin.create_environment" title="Link to this definition">¶</a></dt>
+<dd><p>Create the conda environment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>basedir</strong> (<em>Path</em>) – The base directory location for the environment.</p></li>
+<li><p><strong>envname</strong> (<em>str</em>) – The name of the virtual environment.</p></li>
+<li><p><strong>conf</strong> (<em>dict</em>) – The configuration dictionary for the environment. We will look for <code class="docutils literal notranslate"><span class="pre">conda_install</span></code>.</p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">main</span></code>, and <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> should be protected in the GitHub UI
-so they aren’t accidentally deleted.</p>
-</div>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>For <code class="docutils literal notranslate"><span class="pre">firstresult</span></code> mark compatability in Pluggy
+<a class="reference external" href="https://pluggy.readthedocs.io/en/stable/index.html#first-result-only">https://pluggy.readthedocs.io/en/stable/index.html#first-result-only</a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – Error raised if the environment cannot be created.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="edgetest_conda.plugin.run_update">
+<span class="sig-prename descclassname"><span class="pre">edgetest_conda.plugin.</span></span><span class="sig-name descname"><span class="pre">run_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basedir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">envname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upgrade</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/edgetest_conda/plugin.html#run_update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#edgetest_conda.plugin.run_update" title="Link to this definition">¶</a></dt>
+<dd><p>Update packages from upgrade list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>basedir</strong> (<em>Path</em>) – The base directory location for the environment.</p></li>
+<li><p><strong>envname</strong> (<em>str</em>) – The name of the virtual environment.</p></li>
+<li><p><strong>upgrade</strong> (<em>list</em>) – The list of packages to upgrade</p></li>
+<li><p><strong>conf</strong> (<em>dict</em>) – The configuration dictionary for the environment. We will look for <code class="docutils literal notranslate"><span class="pre">update_with_conda</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>For <code class="docutils literal notranslate"><span class="pre">firstresult</span></code> mark compatability in Pluggy
+<a class="reference external" href="https://pluggy.readthedocs.io/en/stable/index.html#first-result-only">https://pluggy.readthedocs.io/en/stable/index.html#first-result-only</a></p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – Error raised if the packages cannot be updated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-edgetest_conda">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-edgetest_conda" title="Link to this heading">¶</a></h2>
+<p>Conda edgetest plugin &lt;<a class="reference external" href="https://github.com/capitalone/edgetest-conda">https://github.com/capitalone/edgetest-conda</a>&gt;</p>
 </section>
 </section>
 
@@ -284,23 +321,15 @@ so they aren’t accidentally deleted.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="api/modules.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">edgetest_conda</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="developer.html">
+          
+          <a class="prev-page" href="modules.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Developer instructions</div>
+                <div class="title">edgetest_conda</div>
                 
               </div>
             </a>
@@ -334,9 +363,14 @@ so they aren’t accidentally deleted.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Release Guide</a><ul>
-<li><a class="reference internal" href="#overview">Overview</a></li>
-<li><a class="reference internal" href="#tldr">TLDR;</a></li>
+<li><a class="reference internal" href="#">edgetest_conda package</a><ul>
+<li><a class="reference internal" href="#module-edgetest_conda.plugin">Submodules</a><ul>
+<li><a class="reference internal" href="#edgetest_conda.plugin.addoption"><code class="docutils literal notranslate"><span class="pre">addoption()</span></code></a></li>
+<li><a class="reference internal" href="#edgetest_conda.plugin.create_environment"><code class="docutils literal notranslate"><span class="pre">create_environment()</span></code></a></li>
+<li><a class="reference internal" href="#edgetest_conda.plugin.run_update"><code class="docutils literal notranslate"><span class="pre">run_update()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-edgetest_conda">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -348,11 +382,11 @@ so they aren’t accidentally deleted.</p>
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=fd6eb6e6"></script>
-    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
-    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
+</div><script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
     </body>
 </html>

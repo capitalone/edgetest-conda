@@ -3,10 +3,10 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="edgetest_conda" href="api/modules.html"><link rel="prev" title="Developer instructions" href="developer.html">
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Release Guide" href="release_guide.html"><link rel="prev" title="Quick Start" href="quickstart.html">
 
     <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
-        <title>Release Guide - Conda edgetest plugin documentation</title>
+        <title>Developer instructions - Conda edgetest plugin documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -194,8 +194,8 @@
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">Developer instructions</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Release Guide</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Developer instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_guide.html">Release Guide</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
@@ -224,7 +224,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="_sources/release_guide.rst.txt" title="View this page">
+  <a class="muted-link" href="_sources/developer.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -242,40 +242,41 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="release-guide">
-<h1>Release Guide<a class="headerlink" href="#release-guide" title="Link to this heading">¶</a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
-<p>Starting in 2026 we’ve modified our git workflow.</p>
-<p><code class="docutils literal notranslate"><span class="pre">main</span></code> will be the core branch where all features will get merged into and
-production ready code will also exist. When a release is ready to be made releases/tags will be use
-to point to the commit where the release should be made from.</p>
-<p>In the past we had used <code class="docutils literal notranslate"><span class="pre">dev</span></code>, in conjunction with <code class="docutils literal notranslate"><span class="pre">main</span></code>, but there were some issues
-with diverging branches and new rulesets which make the <code class="docutils literal notranslate"><span class="pre">main</span></code> only branching strategy
-easier to manage.</p>
-<p>Each release on <code class="docutils literal notranslate"><span class="pre">main</span></code> should be tagged properly to denote a “version” that will have the
-corresponding artifact on PyPI for users to <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> is where official documentation will go. After each release you should
-build the docs and push the HTML to the pages branch. When first setting up the
-repo you want to make sure your gh-pages is a orphaned branch since it is
-disconnected and independent from the code: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">--orphan</span> <span class="pre">gh-pages</span></code>.</p>
-<p>To build the documentation, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">sphinx</span></code>. To push, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">ghpages</span></code>.</p>
-</section>
-<section id="tldr">
-<h2>TLDR;<a class="headerlink" href="#tldr" title="Link to this heading">¶</a></h2>
+          <section id="developer-instructions">
+<h1>Developer instructions<a class="headerlink" href="#developer-instructions" title="Link to this heading">¶</a></h1>
+<p>Guidance for conda edgetest plugin developers</p>
+<section id="pre-config-and-black">
+<h2>Pre-Config and Black<a class="headerlink" href="#pre-config-and-black" title="Link to this heading">¶</a></h2>
+<p>For developers, Bleeding edge dependency testing uses <a class="reference external" href="https://pre-commit.com/">pre-commit</a> to run the
+<a class="reference external" href="https://github.com/ambv/black">black</a> code formatter before each commit.  In a nutshell what happens is:</p>
 <ul class="simple">
-<li><p>Each feature should have its own branch.</p></li>
-<li><p>Each feature branch should be squash merged into <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
-<li><p>Before a release, bump the version using <code class="docutils literal notranslate"><span class="pre">bumpver</span></code>.</p></li>
-<li><p>Create a release from <code class="docutils literal notranslate"><span class="pre">main</span></code> via Releases and Tags</p></li>
-<li><p>Build and push docs <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code>. (automated via actions)</p></li>
-<li><p>Build and push version to PyPI. (automated via actions)</p></li>
+<li><p>You edit some code locally, then <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code></p></li>
+<li><p>As the commit is registered by <code class="docutils literal notranslate"><span class="pre">git</span></code>, the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> package runs <code class="docutils literal notranslate"><span class="pre">black</span></code> on any changed files
+in the commit.  (You can also run <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">run</span> <span class="pre">--all-files</span></code> to run on all files) and will show
+as having <em>failed</em> if it has made any edits.  If <code class="docutils literal notranslate"><span class="pre">black</span></code> has made edits to the edited files, you
+need to re-add and re-commit those specific files.</p></li>
+<li><p>Then you can <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> to your hearts’ content!</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">black</span></code> code formatter forces our hand on code formatting and style - that means that all of
+the code follows the same style, and we can focus on the meat of the issue.</p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">main</span></code>, and <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> should be protected in the GitHub UI
-so they aren’t accidentally deleted.</p>
-</div>
+<p>The first time you clone Bleeding edge dependency testing into a new environment, you need to run <code class="docutils literal notranslate"><span class="pre">pre-commit</span> <span class="pre">install</span></code> after
+pip/conda installation.  You do <em>not</em> need pre-commit to just run Bleeding edge dependency testing.  If you have a pre-existing
+environment, go ahead and <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pre-commit</span></code> and you should be fine. Generally,
+only PRs with black styling will be accepted by the Bleeding edge dependency testing team.</p>
+</section>
+<section id="contribution-guidelines">
+<h2>Contribution guidelines<a class="headerlink" href="#contribution-guidelines" title="Link to this heading">¶</a></h2>
+<p>Keep an eye on the <a class="reference external" href="https://github.com/capitalone/edgetest-conda/issues">issues</a>.
+We are always happy for help, including such things as:</p>
+<ul class="simple">
+<li><p>Bug reports</p></li>
+<li><p>Feature requests</p></li>
+<li><p>Commenting on issues (“me too!” and “+1” can be helpful)</p></li>
+<li><p>Positive feedback (It’s always lovely to hear!)</p></li>
+<li><p>Negative feedback (but be nice)</p></li>
+<li><p>Pull Requests to fix a bug</p></li>
+<li><p>Pull Requests to implement a feature (though we wouldn’t mind discussing first)</p></li>
+</ul>
 </section>
 </section>
 
@@ -284,23 +285,23 @@ so they aren’t accidentally deleted.</p>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="api/modules.html">
+          <a class="next-page" href="release_guide.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">edgetest_conda</div>
+                <div class="title">Release Guide</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="developer.html">
+          <a class="prev-page" href="quickstart.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Developer instructions</div>
+                <div class="title">Quick Start</div>
                 
               </div>
             </a>
@@ -334,9 +335,9 @@ so they aren’t accidentally deleted.</p>
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">Release Guide</a><ul>
-<li><a class="reference internal" href="#overview">Overview</a></li>
-<li><a class="reference internal" href="#tldr">TLDR;</a></li>
+<li><a class="reference internal" href="#">Developer instructions</a><ul>
+<li><a class="reference internal" href="#pre-config-and-black">Pre-Config and Black</a></li>
+<li><a class="reference internal" href="#contribution-guidelines">Contribution guidelines</a></li>
 </ul>
 </li>
 </ul>

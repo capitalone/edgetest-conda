@@ -2,12 +2,10 @@
 <html class="no-js" lang="en" data-content_root="./">
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="edgetest_conda" href="api/modules.html"><link rel="prev" title="Developer instructions" href="developer.html">
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="#"><link rel="search" title="Search" href="search.html">
 
-    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
-        <title>Release Guide - Conda edgetest plugin documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 --><title>Index - Conda edgetest plugin documentation</title>
+<link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
@@ -173,7 +171,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
@@ -192,10 +190,10 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developer.html">Developer instructions</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Release Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_guide.html">Release Guide</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
@@ -223,13 +221,7 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="view-this-page">
-  <a class="muted-link" href="_sources/release_guide.rst.txt" title="View this page">
-    <svg><use href="#svg-eye"></use></svg>
-    <span class="visually-hidden">View this page</span>
-  </a>
-</div>
-<div class="theme-toggle-container theme-toggle-content">
+          <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
               <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
               <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
@@ -237,73 +229,95 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="release-guide">
-<h1>Release Guide<a class="headerlink" href="#release-guide" title="Link to this heading">¶</a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
-<p>Starting in 2026 we’ve modified our git workflow.</p>
-<p><code class="docutils literal notranslate"><span class="pre">main</span></code> will be the core branch where all features will get merged into and
-production ready code will also exist. When a release is ready to be made releases/tags will be use
-to point to the commit where the release should be made from.</p>
-<p>In the past we had used <code class="docutils literal notranslate"><span class="pre">dev</span></code>, in conjunction with <code class="docutils literal notranslate"><span class="pre">main</span></code>, but there were some issues
-with diverging branches and new rulesets which make the <code class="docutils literal notranslate"><span class="pre">main</span></code> only branching strategy
-easier to manage.</p>
-<p>Each release on <code class="docutils literal notranslate"><span class="pre">main</span></code> should be tagged properly to denote a “version” that will have the
-corresponding artifact on PyPI for users to <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> is where official documentation will go. After each release you should
-build the docs and push the HTML to the pages branch. When first setting up the
-repo you want to make sure your gh-pages is a orphaned branch since it is
-disconnected and independent from the code: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">--orphan</span> <span class="pre">gh-pages</span></code>.</p>
-<p>To build the documentation, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">sphinx</span></code>. To push, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">ghpages</span></code>.</p>
+          
+<section class="genindex-section">
+  <h1 id="index">Index</h1>
+  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#R"><strong>R</strong></a></div>
 </section>
-<section id="tldr">
-<h2>TLDR;<a class="headerlink" href="#tldr" title="Link to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>Each feature should have its own branch.</p></li>
-<li><p>Each feature branch should be squash merged into <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
-<li><p>Before a release, bump the version using <code class="docutils literal notranslate"><span class="pre">bumpver</span></code>.</p></li>
-<li><p>Create a release from <code class="docutils literal notranslate"><span class="pre">main</span></code> via Releases and Tags</p></li>
-<li><p>Build and push docs <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code>. (automated via actions)</p></li>
-<li><p>Build and push version to PyPI. (automated via actions)</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">main</span></code>, and <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> should be protected in the GitHub UI
-so they aren’t accidentally deleted.</p>
-</div>
+<section id="A" class="genindex-section">
+  <h2>A</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/edgetest_conda.html#edgetest_conda.plugin.addoption">addoption() (in module edgetest_conda.plugin)</a>
+</li>
+    </ul></td>
+  </tr></table>
 </section>
+
+<section id="C" class="genindex-section">
+  <h2>C</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/edgetest_conda.html#edgetest_conda.plugin.create_environment">create_environment() (in module edgetest_conda.plugin)</a>
+</li>
+    </ul></td>
+  </tr></table>
 </section>
+
+<section id="E" class="genindex-section">
+  <h2>E</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    edgetest_conda
+
+        <ul>
+          <li><a href="api/edgetest_conda.html#module-edgetest_conda">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    edgetest_conda.plugin
+
+        <ul>
+          <li><a href="api/edgetest_conda.html#module-edgetest_conda.plugin">module</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="M" class="genindex-section">
+  <h2>M</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li>
+    module
+
+        <ul>
+          <li><a href="api/edgetest_conda.html#module-edgetest_conda">edgetest_conda</a>
+</li>
+          <li><a href="api/edgetest_conda.html#module-edgetest_conda.plugin">edgetest_conda.plugin</a>
+</li>
+        </ul></li>
+    </ul></td>
+  </tr></table>
+</section>
+
+<section id="R" class="genindex-section">
+  <h2>R</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="api/edgetest_conda.html#edgetest_conda.plugin.run_update">run_update() (in module edgetest_conda.plugin)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
 
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="api/modules.html">
-              <div class="page-info">
-                <div class="context">
-                  <span>Next</span>
-                </div>
-                <div class="title">edgetest_conda</div>
-              </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-            </a>
-          <a class="prev-page" href="developer.html">
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
-              <div class="page-info">
-                <div class="context">
-                  <span>Previous</span>
-                </div>
-                
-                <div class="title">Developer instructions</div>
-                
-              </div>
-            </a>
+          
+          
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -322,28 +336,8 @@ so they aren’t accidentally deleted.</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Release Guide</a><ul>
-<li><a class="reference internal" href="#overview">Overview</a></li>
-<li><a class="reference internal" href="#tldr">TLDR;</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
