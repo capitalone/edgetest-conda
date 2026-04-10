@@ -38,9 +38,6 @@ def addoption(schema: Schema):
         },
     )
     schema.add_envoption(
-        "python_version", {"type": "string", "default": "3.10", "coerce": str}
-    )
-    schema.add_envoption(
         "update_with_conda",
         {
             "type": "boolean",
