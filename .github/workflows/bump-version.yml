@@ -1,10 +1,10 @@
 # This workflow manually bumps the package version and opens a PR with the change.
-# edgetest-conda uses CalVer (YYYY.MM.INC0) via `bumpver`, configured in setup.cfg:
+# edgetest-conda uses CalVer (YYYY.MM.INC0) via `bumpver`, configured in pyproject.toml:
 #   - "bump" (default) rolls the date forward, e.g. 2026.4.0 -> 2026.9.0
 #   - "patch" keeps the date and increments the counter, e.g. 2026.4.0 -> 2026.4.1
 #   - custom_version sets an exact version (must match the YYYY.MM.INC0 pattern)
-# The version lives in three places, all updated by bumpver per [bumpver:file_patterns]:
-#   edgetest_conda/__init__.py, setup.cfg ([bumpver] current_version), docs/source/conf.py
+# The version lives in three places, all updated by bumpver per [tool.bumpver.file_patterns]:
+#   edgetest_conda/__init__.py, pyproject.toml ([tool.bumpver] current_version), docs/source/conf.py
 name: "Bump version"
 
 on:
@@ -63,7 +63,7 @@ jobs:
             BUMP_ARGS=()
           fi
 
-          # --no-commit/--no-tag-commit override bumpver's `commit = True` in setup.cfg;
+          # --no-commit/--no-tag-commit override bumpver's `commit = true` in pyproject.toml;
           # git is driven explicitly below so no tag is created (releases stay manual).
           bumpver update "${BUMP_ARGS[@]}" --no-fetch --no-commit --no-tag-commit --no-push
 
@@ -77,7 +77,7 @@ jobs:
           BRANCH_NAME="bump-version-${NEW_VERSION}"
 
           git switch -c "$BRANCH_NAME"
-          git add edgetest_conda/__init__.py setup.cfg docs/source/conf.py
+          git add edgetest_conda/__init__.py pyproject.toml docs/source/conf.py
           git commit -m "chore: bump version to ${NEW_VERSION}"
           git push -u origin "$BRANCH_NAME"
 
