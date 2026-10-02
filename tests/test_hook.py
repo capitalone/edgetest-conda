@@ -8,52 +8,45 @@ import pytest
 from click.testing import CliRunner
 from edgetest.interface import cli
 from edgetest.schema import EdgetestValidator, Schema
-from edgetest.utils import parse_cfg
+from edgetest.utils import parse_toml
 
 from edgetest_conda.plugin import _check_mamba, addoption
 
 CFG = """
-[edgetest.envs.myenv]
-update_with_conda = True
-conda_install =
-    graphviz
-python_version = 3.12
-upgrade =
-    myupgrade
-command =
-    pytest tests -m 'not integration'
+[[tool.edgetest.env]]
+name = "myenv"
+update_with_conda = true
+conda_install = ["graphviz"]
+python_version = "3.12"
+upgrade = ["myupgrade"]
+command = "pytest tests -m 'not integration'"
 """
 
 CFG_UPDATE_PIP = """
-[edgetest.envs.myenv]
-update_with_conda = False
-conda_install =
-    graphviz
-python_version = 3.12
-upgrade =
-    myupgrade
-command =
-    pytest tests -m 'not integration'
+[[tool.edgetest.env]]
+name = "myenv"
+update_with_conda = false
+conda_install = ["graphviz"]
+python_version = "3.12"
+upgrade = ["myupgrade"]
+command = "pytest tests -m 'not integration'"
 """
 
 CFG_UPDATE_PIP_DEFAULT = """
-[edgetest.envs.myenv]
-conda_install =
-    graphviz
-python_version = 3.12
-upgrade =
-    myupgrade
-command =
-    pytest tests -m 'not integration'
+[[tool.edgetest.env]]
+name = "myenv"
+conda_install = ["graphviz"]
+python_version = "3.12"
+upgrade = ["myupgrade"]
+command = "pytest tests -m 'not integration'"
 """
 
 
 CFG_NOCONDA = """
-[edgetest.envs.myenv]
-upgrade =
-    myupgrade
-command =
-    pytest tests -m 'not integration'
+[[tool.edgetest.env]]
+name = "myenv"
+upgrade = ["myupgrade"]
+command = "pytest tests -m 'not integration'"
 """
 
 PIP_LIST = """
@@ -78,14 +71,14 @@ myenv          True                True             myupgrade                   
 def test_addoption(config, tmpdir):
     """Test the addoption hook."""
     location = tmpdir.mkdir("mylocation")
-    conf_loc = Path(str(location), "myconfig.cfg")
+    conf_loc = Path(str(location), "pyproject.toml")
     with open(conf_loc, "w") as outfile:
         outfile.write(config)
 
     schema = Schema()
     addoption(schema=schema)
 
-    cfg = parse_cfg(filename=conf_loc)
+    cfg = parse_toml(filename=conf_loc)
 
     validator = EdgetestValidator(schema=schema.schema)
     validator.validate(cfg)
@@ -126,10 +119,10 @@ def test_conda_create(mock_popen, mock_cpopen):
     runner = CliRunner()
 
     with runner.isolated_filesystem() as loc:
-        with open("config.cfg", "w") as outfile:
+        with open("pyproject.toml", "w") as outfile:
             outfile.write(CFG)
 
-        result = runner.invoke(cli, ["--config=config.cfg"])
+        result = runner.invoke(cli, ["--config=pyproject.toml"])
 
     assert result.exit_code == 0
 
@@ -206,10 +199,10 @@ def test_conda_create_update_pip(mock_popen, mock_cpopen, CFG):
     runner = CliRunner()
 
     with runner.isolated_filesystem() as loc:
-        with open("config.cfg", "w") as outfile:
+        with open("pyproject.toml", "w") as outfile:
             outfile.write(CFG)
 
-        result = runner.invoke(cli, ["--config=config.cfg"])
+        result = runner.invoke(cli, ["--config=pyproject.toml"])
 
     assert result.exit_code == 0
 
@@ -279,10 +272,10 @@ def test_mamba_create(mock_popen, mock_cpopen):
     runner = CliRunner()
 
     with runner.isolated_filesystem() as loc:
-        with open("config.cfg", "w") as outfile:
+        with open("pyproject.toml", "w") as outfile:
             outfile.write(CFG)
 
-        result = runner.invoke(cli, ["--config=config.cfg"])
+        result = runner.invoke(cli, ["--config=pyproject.toml"])
 
     assert result.exit_code == 0
 
@@ -359,10 +352,10 @@ def test_mamba_create_update_pip(mock_popen, mock_cpopen, CFG):
     runner = CliRunner()
 
     with runner.isolated_filesystem() as loc:
-        with open("config.cfg", "w") as outfile:
+        with open("pyproject.toml", "w") as outfile:
             outfile.write(CFG)
 
-        result = runner.invoke(cli, ["--config=config.cfg"])
+        result = runner.invoke(cli, ["--config=pyproject.toml"])
 
     assert result.exit_code == 0
 

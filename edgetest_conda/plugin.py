@@ -25,7 +25,11 @@ def addoption(schema: Schema):
     """
 
     def to_bool(x):
-        return x.lower() in ["true", "1"]
+        # TOML (``pyproject.toml``) yields native booleans, while ``.ini``-style
+        # files yield strings; accept both.
+        if isinstance(x, bool):
+            return x
+        return str(x).lower() in ["true", "1"]
 
     schema.add_envoption(
         "conda_install",
