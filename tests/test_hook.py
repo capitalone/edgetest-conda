@@ -67,6 +67,25 @@ myenv          True                True             myupgrade                   
 """
 
 
+def _normalize(calls):
+    """Normalize captured ``Popen`` calls for comparison.
+
+    ``edgetest`` >= 2026.10 always passes ``env=`` to ``Popen`` and resolves
+    ``uv`` through ``find_uv_bin()``, so raw calls carry a full environment
+    dict and an absolute executable path that vary per machine. Drop the
+    ``env`` keyword and compare executables by name.
+    """
+    normalized = []
+    for entry in calls:
+        args, kwargs = entry
+        kwargs = dict(kwargs)
+        kwargs.pop("env", None)
+        cmd = list(args[0])
+        cmd[0] = Path(cmd[0]).name.removesuffix(".exe")
+        normalized.append(call(tuple(cmd), *args[1:], **kwargs))
+    return normalized
+
+
 @pytest.mark.parametrize("config", [CFG, CFG_NOCONDA])
 def test_addoption(config, tmpdir):
     """Test the addoption hook."""
@@ -95,7 +114,7 @@ def test_mamba_check(mock_popen):
 
     output = _check_mamba()
 
-    assert mock_popen.call_args_list == [
+    assert _normalize(mock_popen.call_args_list) == [
         call(
             ("conda", "list", "--json"),
             stdout=-1,
@@ -132,7 +151,7 @@ def test_conda_create(mock_popen, mock_cpopen):
     else:
         py_loc = str(Path(env_loc) / "bin" / "python")
 
-    assert mock_popen.call_args_list == [
+    assert _normalize(mock_popen.call_args_list) == [
         call(
             ("conda", "list", "--json"),
             stdout=-1,
@@ -152,7 +171,7 @@ def test_conda_create(mock_popen, mock_cpopen):
             universal_newlines=True,
         ),
         call(
-            ("uv", "pip", "install", f"--python={py_loc}", "."),
+            ("uv", "sync", "--inexact", f"--python={py_loc}"),
             stdout=-1,
             stderr=-1,
             universal_newlines=True,
@@ -212,7 +231,7 @@ def test_conda_create_update_pip(mock_popen, mock_cpopen, CFG):
     else:
         py_loc = str(Path(env_loc) / "bin" / "python")
 
-    assert mock_popen.call_args_list == [
+    assert _normalize(mock_popen.call_args_list) == [
         call(
             ("conda", "list", "--json"),
             stdout=-1,
@@ -232,7 +251,7 @@ def test_conda_create_update_pip(mock_popen, mock_cpopen, CFG):
             universal_newlines=True,
         ),
         call(
-            ("uv", "pip", "install", f"--python={py_loc}", "."),
+            ("uv", "sync", "--inexact", f"--python={py_loc}"),
             stdout=-1,
             stderr=-1,
             universal_newlines=True,
@@ -285,7 +304,7 @@ def test_mamba_create(mock_popen, mock_cpopen):
     else:
         py_loc = str(Path(env_loc) / "bin" / "python")
 
-    assert mock_popen.call_args_list == [
+    assert _normalize(mock_popen.call_args_list) == [
         call(
             ("conda", "list", "--json"),
             stdout=-1,
@@ -305,7 +324,7 @@ def test_mamba_create(mock_popen, mock_cpopen):
             universal_newlines=True,
         ),
         call(
-            ("uv", "pip", "install", f"--python={py_loc}", "."),
+            ("uv", "sync", "--inexact", f"--python={py_loc}"),
             stdout=-1,
             stderr=-1,
             universal_newlines=True,
@@ -365,7 +384,7 @@ def test_mamba_create_update_pip(mock_popen, mock_cpopen, CFG):
     else:
         py_loc = str(Path(env_loc) / "bin" / "python")
 
-    assert mock_popen.call_args_list == [
+    assert _normalize(mock_popen.call_args_list) == [
         call(
             ("conda", "list", "--json"),
             stdout=-1,
@@ -385,7 +404,7 @@ def test_mamba_create_update_pip(mock_popen, mock_cpopen, CFG):
             universal_newlines=True,
         ),
         call(
-            ("uv", "pip", "install", f"--python={py_loc}", "."),
+            ("uv", "sync", "--inexact", f"--python={py_loc}"),
             stdout=-1,
             stderr=-1,
             universal_newlines=True,
